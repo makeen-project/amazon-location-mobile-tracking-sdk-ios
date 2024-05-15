@@ -1,1 +1,4 @@
 .DS_Store
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.swiftpm/xcode/package.xcworkspace/xcuserdata/zeeshansheikh.xcuserdatad/UserInterfaceState.xcuserstate
+.swiftpm/xcode/xcuserdata/zeeshansheikh.xcuserdatad/xcschemes/xcschememanagement.plist
