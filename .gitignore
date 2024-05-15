@@ -31,3 +31,4 @@ ios/.xcode.env.local
 #
 build/
 .idea
+Tests/AWSTrackingSDKiOSTests/TestConfig.plist
