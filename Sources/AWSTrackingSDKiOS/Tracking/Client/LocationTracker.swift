@@ -147,6 +147,13 @@ public class LocationTracker {
         return nil
     }
     
+    public func listGeofences(input: ListGeofencesInput) async throws -> ListGeofencesOutput? {
+        if locationUploadSerializer != nil {
+            return try await locationUploadSerializer?.listGeofences(input: input)
+        }
+        return nil
+    }
+    
     private func updateTrackerDeviceLocation(retries: Int = 3) async throws ->  BatchUpdateDevicePositionOutput? {
         let locations = locationDatabase.fetchAll()
         let filteredLocations = filterLocations(locations: locations)

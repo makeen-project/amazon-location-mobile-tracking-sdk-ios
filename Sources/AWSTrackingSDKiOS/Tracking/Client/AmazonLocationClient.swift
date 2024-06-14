@@ -52,4 +52,20 @@ public extension AmazonLocationClient {
         }
         return nil
     }
+    
+    func listGeofences(input: ListGeofencesInput) async throws -> ListGeofencesOutput? {
+        do {
+            if locationProvider.getCognitoProvider() != nil {
+                if locationClient == nil {
+                    try await initialiseLocationClient()
+                }
+                let response = try await locationClient!.listGeofences(input: input)
+                return response
+            }
+        }
+        catch {
+            throw error
+        }
+        return nil
+    }
 }

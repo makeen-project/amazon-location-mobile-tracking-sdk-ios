@@ -37,4 +37,8 @@ internal class LocationUploadSerializer{
     func batchEvaluateGeofences(input: BatchEvaluateGeofencesInput) async throws -> BatchEvaluateGeofencesOutput? {
         return try await client.batchEvaluateGeofences(input: input)
     }
+    
+    func listGeofences(input: ListGeofencesInput) async throws -> ListGeofencesOutput? {
+        return try await client.listGeofences(input: input)
+    }
 }
