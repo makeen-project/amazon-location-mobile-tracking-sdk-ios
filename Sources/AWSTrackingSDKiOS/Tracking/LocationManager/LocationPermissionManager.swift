@@ -68,6 +68,7 @@ public class LocationPermissionManager {
     }
     
     public func checkPermission() -> CLAuthorizationStatus {
-        return CLLocationManager.authorizationStatus()
+        let status = CLLocationManager.authorizationStatus()
+        return status
     }
 }
