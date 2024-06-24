@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/makeen-project/amazon-location-mobile-auth-sdk-ios.git", branch: "hotfix_aws_sdk_0-46-0")
+        .package(url: "https://github.com/makeen-project/amazon-location-mobile-auth-sdk-ios.git", branch: "iot_mqtt_feature")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

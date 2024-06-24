@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/makeen-project/amazon-location-mobile-auth-sdk-ios.git",
       "state" : {
-        "branch" : "hotfix_aws_sdk_0-46-0",
-        "revision" : "5bd9f8b675d74db3e48ec44997d5f0f08296d589"
+        "branch" : "iot_mqtt_feature",
+        "revision" : "126d2620d7752413ca1e1aaac19c85718afffe98"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
-        "version" : "1.5.4"
+        "revision" : "b3a637307772d20291d78a5b7a0d4204d9b1e981",
+        "version" : "1.6.0"
       }
     }
   ],
