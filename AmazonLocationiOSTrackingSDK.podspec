@@ -19,5 +19,8 @@ Pod::Spec.new do |s|
   
    # Dependencies
    s.spm_dependency "AmazonLocationiOSAuthSDK"
-
+   s.spm_dependency "aws-sdk-swift/AWSLocation"
+   s.spm_dependency "aws-sdk-swift/AWSCognitoIdentity"
+   s.spm_dependency "aws-sdk-swift/AWSClientRuntime"
+   
 end
