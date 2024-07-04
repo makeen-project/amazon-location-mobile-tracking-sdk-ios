@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/aws-geospatial/amazon-location-mobile-tracking-sdk-ios'
   s.license = { :type => 'Apache License, Version 2.0', :text => 'https://www.apache.org/licenses/LICENSE-2.0' }
   s.author       = { 'Oleg Filimonov' => 'oleg@makeen.io' }
-  s.source       = { :git => 'https://github.com/makeen-project/amazon-location-mobile-tracking-sdk-ios.git', :branch => 'ALMS-207_CocoaPods_Support'}
+  s.source       = { :git => 'https://github.com/makeen-project/amazon-location-mobile-tracking-sdk-ios.git', :tag => 'ALMS-207_CocoaPods_Support'}
 
   s.ios.deployment_target = '13.0'
 
@@ -16,12 +16,8 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Sources/**/*.h'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-
-  # Dependencies
-     # s.dependency 'KeychainSwift', '~> 20.0.0'
-    #  s.spm_dependency "aws-sdk-swift/AWSLocation"
-     # s.spm_dependency "aws-sdk-swift/AWSCognitoIdentity"
-     # s.spm_dependency "aws-sdk-swift/AWSClientRuntime"
-     # s.spm_dependency "AmazonLocationiOSAuthSDK"
+  
+   # Dependencies
+   s.spm_dependency "AmazonLocationiOSAuthSDK"
 
 end
