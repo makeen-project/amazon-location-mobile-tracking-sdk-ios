@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/aws-geospatial/amazon-location-mobile-auth-sdk-ios", branch: "0.2.2")
+        .package(url: "https://github.com/makeen-project/amazon-location-mobile-auth-sdk-ios", branch: "ALMS-204_CocoaPods_Support")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
