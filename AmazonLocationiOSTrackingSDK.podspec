@@ -18,7 +18,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # Dependencies
-   s.dependency 'KeychainSwift', '~> 20.0.0'
-   s.spm_dependency 'AmazonLocationiOSAuthSDK'
+   s.spm_dependency "aws-sdk-swift/AWSLocation"
+   s.spm_dependency "aws-sdk-swift/AWSCognitoIdentity"
+   s.spm_dependency "aws-sdk-swift/AWSClientRuntime"
+   s.spm_dependency "AmazonLocationiOSAuthSDK"
 
 end
