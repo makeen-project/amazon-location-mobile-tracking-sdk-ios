@@ -1,0 +1,265 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AmazonLocationiOSTrackingSDK
+import AWSClientRuntime
+import AWSLocation
+import AmazonLocationiOSAuthSDK
+import Combine
+import CoreData
+import CoreLocation
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum TrackingLocationError : Swift.Error {
+  case permissionDenied
+  public static func == (a: AmazonLocationiOSTrackingSDK.TrackingLocationError, b: AmazonLocationiOSTrackingSDK.TrackingLocationError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum LogLevel : Swift.Codable {
+  case none, debug, error
+  public static func == (a: AmazonLocationiOSTrackingSDK.LogLevel, b: AmazonLocationiOSTrackingSDK.LogLevel) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc extension AmazonLocationiOSAuthSDK.AmazonLocationClient {
+  #if compiler(>=5.3) && $AsyncAwait
+  @objc dynamic public func batchUpdateDevicePosition(request: AmazonLocationiOSTrackingSDK.BatchUpdateDevicePositionRequest) async throws -> AmazonLocationiOSTrackingSDK.BatchUpdateDevicePositionResponse?
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  @objc dynamic public func getDevicePositionHistory(request: AmazonLocationiOSTrackingSDK.GetDevicePositionHistoryRequest) async throws -> AmazonLocationiOSTrackingSDK.GetDevicePositionHistoryResponse?
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  @objc dynamic public func batchEvaluateGeofences(request: AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesRequest) async throws -> AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesResponse?
+  #endif
+}
+@objc public class LocationTracker : ObjectiveC.NSObject {
+  @objc public init(provider: AmazonLocationiOSAuthSDK.LocationCredentialsProvider, trackerName: Swift.String, config: AmazonLocationiOSTrackingSDK.LocationTrackerConfig? = nil)
+  @objc public func setTrackerConfig(config: AmazonLocationiOSTrackingSDK.LocationTrackerConfig)
+  @objc public func getTrackerConfig() -> AmazonLocationiOSTrackingSDK.LocationTrackerConfig
+  @objc public func getDeviceId() -> Swift.String?
+  @objc public func startTracking() throws
+  @objc public func resumeTracking() throws
+  @objc public func stopTracking()
+  @objc public func startBackgroundTracking(mode: AmazonLocationiOSTrackingSDK.BackgroundTrackingMode) throws
+  @objc public func resumeBackgroundTracking(mode: AmazonLocationiOSTrackingSDK.BackgroundTrackingMode) throws
+  @objc public func stopBackgroundTracking()
+  #if compiler(>=5.3) && $AsyncAwait
+  @objc public func getTrackerDeviceLocation(nextToken: Swift.String?, startTime: Foundation.Date? = nil, endTime: Foundation.Date? = nil, maxResults: Foundation.NSNumber? = nil) async throws -> AmazonLocationiOSTrackingSDK.GetDevicePositionHistoryResponse?
+  #endif
+  @objc public func getDeviceLocation() -> AmazonLocationiOSTrackingSDK.LocationEntity?
+  #if compiler(>=5.3) && $AsyncAwait
+  @objc public func batchEvaluateGeofences(request: AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesRequest) async throws -> AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesResponse?
+  #endif
+  @objc deinit
+}
+@objc public class LocationTrackerConfig : ObjectiveC.NSObject {
+  public var locationFilters: [any AmazonLocationiOSTrackingSDK.LocationFilter]
+  public var trackingDistanceInterval: Swift.Double
+  public var trackingTimeInterval: Swift.Double
+  public var trackingAccuracyLevel: Swift.Double
+  public var uploadFrequency: Swift.Double
+  public var desiredAccuracy: CoreLocation.CLLocationAccuracy
+  public var activityType: CoreLocation.CLActivityType.RawValue
+  public var logLevel: AmazonLocationiOSTrackingSDK.LogLevel
+  public init(locationFilters: [any AmazonLocationiOSTrackingSDK.LocationFilter]? = nil, trackingDistanceInterval: Swift.Double? = nil, trackingTimeInterval: Swift.Double? = nil, trackingAccuracyLevel: Swift.Double? = nil, uploadFrequency: Swift.Double? = nil, desiredAccuracy: CoreLocation.CLLocationAccuracy? = nil, activityType: CoreLocation.CLActivityType? = nil, logLevel: AmazonLocationiOSTrackingSDK.LogLevel? = nil)
+  @objc deinit
+}
+public class AccuracyLocationFilter : AmazonLocationiOSTrackingSDK.LocationFilter {
+  public init()
+  @objc public func shouldUpload(currentLocation: AmazonLocationiOSTrackingSDK.LocationEntity, previousLocation: AmazonLocationiOSTrackingSDK.LocationEntity?, trackerConfig: AmazonLocationiOSTrackingSDK.LocationTrackerConfig) -> Swift.Bool
+  @objc deinit
+}
+public class DistanceLocationFilter : AmazonLocationiOSTrackingSDK.LocationFilter {
+  public init()
+  @objc public func shouldUpload(currentLocation: AmazonLocationiOSTrackingSDK.LocationEntity, previousLocation: AmazonLocationiOSTrackingSDK.LocationEntity?, trackerConfig: AmazonLocationiOSTrackingSDK.LocationTrackerConfig) -> Swift.Bool
+  @objc deinit
+}
+@objc public protocol LocationFilter {
+  @objc func shouldUpload(currentLocation: AmazonLocationiOSTrackingSDK.LocationEntity, previousLocation: AmazonLocationiOSTrackingSDK.LocationEntity?, trackerConfig: AmazonLocationiOSTrackingSDK.LocationTrackerConfig) -> Swift.Bool
+}
+public struct LocationFilterOptionSet : Swift.OptionSet, Swift.Codable, Swift.Hashable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let time: AmazonLocationiOSTrackingSDK.LocationFilterOptionSet
+  public static let distance: AmazonLocationiOSTrackingSDK.LocationFilterOptionSet
+  public static let accuracy: AmazonLocationiOSTrackingSDK.LocationFilterOptionSet
+  public typealias ArrayLiteralElement = AmazonLocationiOSTrackingSDK.LocationFilterOptionSet
+  public typealias Element = AmazonLocationiOSTrackingSDK.LocationFilterOptionSet
+  public typealias RawValue = Swift.Int
+}
+public class TimeLocationFilter : AmazonLocationiOSTrackingSDK.LocationFilter {
+  public init()
+  @objc public func shouldUpload(currentLocation: AmazonLocationiOSTrackingSDK.LocationEntity, previousLocation: AmazonLocationiOSTrackingSDK.LocationEntity?, trackerConfig: AmazonLocationiOSTrackingSDK.LocationTrackerConfig) -> Swift.Bool
+  @objc deinit
+}
+@objc public enum BackgroundTrackingMode : Swift.Int {
+  case Active = 0
+  case BatterySaving = 1
+  case None = 2
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias Callback = (CoreLocation.CLLocation) -> Swift.Void
+@objc public class BatchEvaluateGeofencesRequest : ObjectiveC.NSObject {
+  public var collectionName: Swift.String?
+  public var devicePositionUpdates: [AmazonLocationiOSTrackingSDK.DevicePositionUpdate]?
+  public init(collectionName: Swift.String? = nil, devicePositionUpdates: [AmazonLocationiOSTrackingSDK.DevicePositionUpdate]? = nil)
+  @objc deinit
+}
+@objc public class BatchUpdateDevicePositionRequest : ObjectiveC.NSObject {
+  public var trackerName: Swift.String?
+  public var updates: [AmazonLocationiOSTrackingSDK.DevicePositionUpdate]?
+  public init(trackerName: Swift.String? = nil, updates: [AmazonLocationiOSTrackingSDK.DevicePositionUpdate]? = nil)
+  @objc deinit
+}
+@objc public class DevicePositionUpdate : ObjectiveC.NSObject {
+  public var accuracy: AmazonLocationiOSTrackingSDK.DevicePositionalAccuracy?
+  public var deviceId: Swift.String?
+  public var position: [Swift.Double]?
+  public var positionProperties: [Swift.String : Swift.String]?
+  public var sampleTime: Foundation.Date?
+  public init(accuracy: AmazonLocationiOSTrackingSDK.DevicePositionalAccuracy? = nil, deviceId: Swift.String? = nil, position: [Swift.Double]? = nil, positionProperties: [Swift.String : Swift.String]? = nil, sampleTime: Foundation.Date? = nil)
+  @objc deinit
+}
+@objc public class GetDevicePositionHistoryRequest : ObjectiveC.NSObject {
+  @objc public var deviceId: Swift.String?
+  @objc public var endTimeExclusive: Foundation.Date?
+  @objc public var maxResults: Foundation.NSNumber?
+  @objc public var nextToken: Swift.String?
+  @objc public var startTimeInclusive: Foundation.Date?
+  @objc public var trackerName: Swift.String?
+  @objc public init(deviceId: Swift.String? = nil, endTimeExclusive: Foundation.Date? = nil, maxResults: Foundation.NSNumber? = nil, nextToken: Swift.String? = nil, startTimeInclusive: Foundation.Date? = nil, trackerName: Swift.String? = nil)
+  @objc deinit
+}
+@objc public class BatchEvaluateGeofencesResponse : ObjectiveC.NSObject {
+  public var errors: [AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesError]?
+  public init(errors: [AmazonLocationiOSTrackingSDK.BatchEvaluateGeofencesError]? = nil)
+  @objc deinit
+}
+@objc public class BatchEvaluateGeofencesError : ObjectiveC.NSObject {
+  public var deviceId: Swift.String?
+  public var error: AmazonLocationiOSTrackingSDK.BatchItemError?
+  public var sampleTime: Foundation.Date?
+  public init(deviceId: Swift.String? = nil, error: AmazonLocationiOSTrackingSDK.BatchItemError? = nil, sampleTime: Foundation.Date? = nil)
+  @objc deinit
+}
+@objc public class BatchUpdateDevicePositionResponse : ObjectiveC.NSObject {
+  public var errors: [AmazonLocationiOSTrackingSDK.BatchUpdateDevicePositionError]?
+  public init(errors: [AmazonLocationiOSTrackingSDK.BatchUpdateDevicePositionError]? = nil)
+  @objc deinit
+}
+@objc public class BatchUpdateDevicePositionError : ObjectiveC.NSObject {
+  public var deviceId: Swift.String?
+  public var error: AmazonLocationiOSTrackingSDK.BatchItemError?
+  public var sampleTime: Foundation.Date?
+  public init(deviceId: Swift.String? = nil, error: AmazonLocationiOSTrackingSDK.BatchItemError? = nil, sampleTime: Foundation.Date? = nil)
+  @objc deinit
+}
+@objc public class BatchItemError : ObjectiveC.NSObject {
+  public var code: AmazonLocationiOSTrackingSDK.BatchItemErrorCode?
+  public var message: Swift.String?
+  public init(code: AmazonLocationiOSTrackingSDK.BatchItemErrorCode? = nil, message: Swift.String? = nil)
+  @objc deinit
+}
+@objc public enum BatchItemErrorCode : Swift.Int, Swift.CaseIterable {
+  case accessDeniedError
+  case conflictError
+  case internalServerError
+  case resourceNotFoundError
+  case throttlingError
+  case validationError
+  case sdkUnknown
+  public static var allCases: [AmazonLocationiOSTrackingSDK.BatchItemErrorCode] {
+    get
+  }
+  public init(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [AmazonLocationiOSTrackingSDK.BatchItemErrorCode]
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public class GetDevicePositionHistoryResponse : ObjectiveC.NSObject {
+  @objc public var devicePositions: [AmazonLocationiOSTrackingSDK.DevicePosition]?
+  @objc public var nextToken: Swift.String?
+  @objc public init(devicePositions: [AmazonLocationiOSTrackingSDK.DevicePosition]? = nil, nextToken: Swift.String? = nil)
+  @objc deinit
+}
+@objc public class DevicePosition : ObjectiveC.NSObject {
+  @objc public var accuracy: AmazonLocationiOSTrackingSDK.DevicePositionalAccuracy?
+  @objc public var deviceId: Swift.String?
+  @objc public var position: [Swift.Double]?
+  @objc public var positionProperties: [Swift.String : Swift.String]?
+  @objc public var receivedTime: Foundation.Date?
+  @objc public var sampleTime: Foundation.Date?
+  @objc public init(accuracy: AmazonLocationiOSTrackingSDK.DevicePositionalAccuracy? = nil, deviceId: Swift.String? = nil, position: [Swift.Double]? = nil, positionProperties: [Swift.String : Swift.String]? = nil, receivedTime: Foundation.Date? = nil, sampleTime: Foundation.Date? = nil)
+  @objc deinit
+}
+@objc public class DevicePositionalAccuracy : ObjectiveC.NSObject {
+  @objc public var horizontal: Foundation.NSNumber?
+  @objc public init(horizontal: Foundation.NSNumber? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(LocationEntity) public class LocationEntity : CoreData.NSManagedObject {
+  @objc override dynamic public init(entity: CoreData.NSEntityDescription, insertInto context: CoreData.NSManagedObjectContext?)
+  @objc deinit
+}
+extension AmazonLocationiOSTrackingSDK.LocationEntity {
+  @nonobjc public class func fetchRequest() -> CoreData.NSFetchRequest<AmazonLocationiOSTrackingSDK.LocationEntity>
+  @objc @NSManaged dynamic public var accuracy: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic public var id: Foundation.UUID? {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic public var latitude: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic public var longitude: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc @NSManaged dynamic public var timestamp: Foundation.Date? {
+    @objc get
+    @objc set
+  }
+}
+extension AmazonLocationiOSTrackingSDK.LocationEntity : Swift.Identifiable {
+  public typealias ID = Foundation.UUID?
+}
+extension AmazonLocationiOSTrackingSDK.TrackingLocationError : Swift.Equatable {}
+extension AmazonLocationiOSTrackingSDK.TrackingLocationError : Swift.Hashable {}
+extension AmazonLocationiOSTrackingSDK.LogLevel : Swift.Equatable {}
+extension AmazonLocationiOSTrackingSDK.LogLevel : Swift.Hashable {}
+extension AmazonLocationiOSTrackingSDK.BackgroundTrackingMode : Swift.Equatable {}
+extension AmazonLocationiOSTrackingSDK.BackgroundTrackingMode : Swift.Hashable {}
+extension AmazonLocationiOSTrackingSDK.BackgroundTrackingMode : Swift.RawRepresentable {}
+extension AmazonLocationiOSTrackingSDK.BatchItemErrorCode : Swift.Equatable {}
+extension AmazonLocationiOSTrackingSDK.BatchItemErrorCode : Swift.Hashable {}
+extension AmazonLocationiOSTrackingSDK.BatchItemErrorCode : Swift.RawRepresentable {}
